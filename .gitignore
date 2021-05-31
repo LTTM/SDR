@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+data/PascalVOC12/
+papers/
+results_collection/
+logs/
+outputs/
+results.zip

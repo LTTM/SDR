@@ -1,14 +1,21 @@
 # Continual Semantic Segmentation via Repulsion-Attraction of Sparse and Disentangled Latent Representations
+
+<div align="center">
+
+[![Paper](https://img.shields.io/badge/paper-CVPR2021-brightgreen)](https://openaccess.thecvf.com/content/CVPR2021/html/Michieli_Continual_Semantic_Segmentation_via_Repulsion-Attraction_of_Sparse_and_Disentangled_Latent_CVPR_2021_paper.html)
+[![video](https://img.shields.io/badge/video-5mins-orange)](https://youtu.be/SSG-BZwFOYI)
+[![slides](https://img.shields.io/badge/slides-purple)](img/slides_static.pdf)
+[![poster](https://img.shields.io/badge/poster-lightgrey)](img/poster.pdf)
+[![BibTeX](https://img.shields.io/badge/Cite_us-BibTeX-blue)](#Citation)
+ 
+ </div>
+
 This is the official PyTorch implementation of our work: "Continual Semantic Segmentation via Repulsion-Attraction of Sparse and
 Disentangled Latent Representations" published at CVPR 2021.
 
 In this paper, we present some novel approaches constraining the feature space for continual learning semantic segmentation models. 
 The evaluation on Pascal VOC2012 and on ADE20K validated our method.
 
-[Paper](https://arxiv.org/abs/2103.06342) <br/>
-[5-min video](https://youtu.be/SSG-BZwFOYI) <br/>
-[slides](img/slides_static.pdf) <br/>
-[poster](img/poster.pdf) <br/>
 ![teaser](img/architecture.png) <br/>
 
 
@@ -164,6 +171,7 @@ python -u -m torch.distributed.launch 1> 'outputs/19-1/output_19-1_step1_custom.
 --step_ckpt 'logs/19-1/19-1-voc_FT/19-1-voc_FT_0.pth'
 ```
 
+<a name="Citation"></a>
 ## Cite us
 If you use this repository, please consider to cite
 

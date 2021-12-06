@@ -156,11 +156,19 @@ class VOCSegmentationIncremental(data.Dataset):
             self.inverted_order = {label: self.order.index(label) for label in self.order}
             self.inverted_order[255] = masking_value
 
-            if self.where_to_sim == 'GPU_windows' or self.where_to_sim == 'CPU_windows':
-                reorder_transform = self.tmp_funct1
+            if masking:
+                if self.where_to_sim == 'GPU_windows' or self.where_to_sim == 'CPU_windows':
+                    reorder_transform = self.tmp_funct1
+                else:
+                    reorder_transform = tv.transforms.Lambda(
+                        lambda t: t.apply_(lambda x: self.inverted_order[x] if x in self.inverted_order else masking_value))
             else:
-                reorder_transform = tv.transforms.Lambda(
-                    lambda t: t.apply_(lambda x: self.inverted_order[x] if x in self.inverted_order else masking_value))
+                if self.where_to_sim == 'GPU_windows' or self.where_to_sim == 'CPU_windows':
+                    reorder_transform = self.tmp_funct2
+                else:
+                    reorder_transform = tv.transforms.Lambda(
+                        lambda t: t.apply_(lambda x: x))
+
 
             if masking:
 
@@ -187,6 +195,9 @@ class VOCSegmentationIncremental(data.Dataset):
                 new_value = self.inverted_order[255]  # i.e. masking value
             tmp[x == value] = new_value
         return tmp
+
+    def tmp_funct2(self, x):
+        return x
 
     def tmp_funct3(self, x):
         tmp = zeros_like(x)

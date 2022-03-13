@@ -351,7 +351,7 @@ def main(opts):
 
         # Put the model on GPU
         if opts.where_to_sim == 'GPU_server':
-            DistributedDataParallel(model.cuda(device))
+            model = DistributedDataParallel(model.cuda(device))
         else:  # on MacOS and on Windows apex not supported
             model = model.to(device)
 

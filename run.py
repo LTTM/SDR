@@ -102,6 +102,8 @@ def main(opts):
             from apex import amp
             [model, model_old], optimizer = amp.initialize([model.to(device), model_old.to(device)], optimizer,
                                                      opt_level=opts.opt_level)
+            # Put the model on GPU
+            model = DistributedDataParallel(model, delay_allreduce=True)
             model_old = DistributedDataParallel(model_old)
         else:  # on MacOS and on Windows apex not supported
             model = model.to(device)
